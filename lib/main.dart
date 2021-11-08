@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news_app/article.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +38,9 @@ class NewsListPage extends StatelessWidget {
       ),
       body: FutureBuilder<String>(
         future: DefaultAssetBundle.of(context).loadString('assets/articles.json'),
-        builder: (context, snapshot) {},
+        builder: (context, snapshot) {
+          final List<Article> articles = parseArticles(snapshot.data);
+        },
       ),
     );
   }
