@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/article.dart';
+import 'package:flutter_news_app/detail_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
       initialRoute: NewsListPage.routeName,
       routes: {
         NewsListPage.routeName: (context) => NewsListPage(),
+        ArticleDetailPage.routeName: (context) => ArticleDetailPage(
+          article: ModalRoute.of(context)?.settings.arguments as Article,
+        ),
       },
     );
   }
@@ -53,6 +57,9 @@ class NewsListPage extends StatelessWidget {
 
   Widget _buildArticleItem(BuildContext context, Article article) {
     return ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, ArticleDetailPage.routeName, arguments: article);
+      },
       contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       leading: Image.network(
         article.urlToImage,
