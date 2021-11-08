@@ -22,3 +22,23 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+class NewsListPage extends StatelessWidget {
+  static const routeName = '/article_list';
+
+  const NewsListPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('News App'),
+      ),
+      body: FutureBuilder<String>(
+        future: DefaultAssetBundle.of(context).loadString('assets/articles.json'),
+        builder: (context, snapshot) {},
+      ),
+    );
+  }
+}
