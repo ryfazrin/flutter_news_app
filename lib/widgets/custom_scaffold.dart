@@ -12,6 +12,17 @@ class CustomScaffold extends StatelessWidget {
         child: Stack(
           children: [
             body,
+            Card(
+              margin: EdgeInsets.all(0),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.arrow_back),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
