@@ -15,13 +15,27 @@ class CustomScaffold extends StatelessWidget {
             Card(
               margin: EdgeInsets.all(0),
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     icon: Icon(Icons.arrow_back),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 16.0),
+                    child: Text(
+                      'N',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
                   ),
                 ],
               ),
+              shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(16.0),
+              )),
             ),
           ],
         ),
