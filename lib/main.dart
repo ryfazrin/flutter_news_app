@@ -20,14 +20,19 @@ class MyApp extends StatelessWidget {
         primaryColor: primaryColor,
         accentColor: secondaryColor,
         scaffoldBackgroundColor: Colors.white,
+        textTheme: myTextTheme.apply(bodyColor: Colors.black),
         appBarTheme: AppBarTheme(
-          textTheme: myTextTheme.apply(bodyColor: Colors.black),
           elevation: 0,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             primary: secondaryColor,
             textStyle: TextStyle(),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(0),
+              ),
+            ),
           ),
         ),
       ),
