@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news_app/article.dart';
 import 'package:flutter_news_app/article_web_view.dart';
 import 'package:flutter_news_app/detail_page.dart';
+import 'package:flutter_news_app/styles.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,17 +17,29 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primaryColor: primaryColor,
+        accentColor: secondaryColor,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          textTheme: myTextTheme.apply(bodyColor: Colors.black),
+          elevation: 0,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: secondaryColor,
+            textStyle: TextStyle(),
+          ),
+        ),
       ),
       initialRoute: NewsListPage.routeName,
       routes: {
         NewsListPage.routeName: (context) => NewsListPage(),
         ArticleDetailPage.routeName: (context) => ArticleDetailPage(
-          article: ModalRoute.of(context)?.settings.arguments as Article,
-        ),
+              article: ModalRoute.of(context)?.settings.arguments as Article,
+            ),
         ArticleWebView.routeName: (context) => ArticleWebView(
-          url: ModalRoute.of(context)?.settings.arguments as String,
-        ),
+              url: ModalRoute.of(context)?.settings.arguments as String,
+            ),
       },
     );
   }
@@ -62,9 +75,11 @@ class NewsListPage extends StatelessWidget {
   Widget _buildArticleItem(BuildContext context, Article article) {
     return ListTile(
       onTap: () {
-        Navigator.pushNamed(context, ArticleDetailPage.routeName, arguments: article);
+        Navigator.pushNamed(context, ArticleDetailPage.routeName,
+            arguments: article);
       },
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      contentPadding:
+          const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       leading: Image.network(
         article.urlToImage,
         width: 100,
