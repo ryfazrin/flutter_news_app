@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       theme: ThemeData(
+        primarySwatch: Pallete.kToDark,
         primaryColor: primaryColor,
         accentColor: secondaryColor,
         scaffoldBackgroundColor: Colors.white,
