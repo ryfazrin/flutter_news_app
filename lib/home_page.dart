@@ -27,6 +27,24 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: Text('News App')),
       body: ArticleListPage(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: bottomNavIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.public),
+            label: 'Headline',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        onTap: (selected) {
+          setState(() {
+            bottomNavIndex = selected;
+          });
+        },
+      ),
     );
   }
 
