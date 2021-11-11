@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news_app/article.dart';
 import 'package:flutter_news_app/article_web_view.dart';
 import 'package:flutter_news_app/detail_page.dart';
-import 'package:flutter_news_app/list_page.dart';
+import 'package:flutter_news_app/home_page.dart';
 import 'package:flutter_news_app/styles.dart';
 
 void main() {
