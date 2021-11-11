@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news_app/article_list_page.dart';
-import 'package:flutter_news_app/settings_page.dart';
+import 'package:flutter_news_app/ui/article_list_page.dart';
+import 'package:flutter_news_app/ui/settings_page.dart';
 import 'package:flutter_news_app/widgets/platform_widget.dart';
 
 class HomePage extends StatefulWidget {

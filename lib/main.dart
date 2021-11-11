@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_app/article.dart';
-import 'package:flutter_news_app/article_web_view.dart';
-import 'package:flutter_news_app/detail_page.dart';
-import 'package:flutter_news_app/home_page.dart';
-import 'package:flutter_news_app/styles.dart';
+import 'package:flutter_news_app/common/styles.dart';
+import 'package:flutter_news_app/data/model/article.dart';
+import 'package:flutter_news_app/ui/article_web_view.dart';
+import 'package:flutter_news_app/ui/detail_page.dart';
+import 'package:flutter_news_app/ui/home_page.dart';
 
 void main() {
   runApp(const MyApp());
