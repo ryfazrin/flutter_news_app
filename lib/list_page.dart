@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/article.dart';
 import 'package:flutter_news_app/detail_page.dart';
+import 'package:flutter_news_app/widgets/platform_widget.dart';
 
 class NewsListPage extends StatelessWidget {
   static const routeName = '/article_list';
@@ -9,17 +11,25 @@ class NewsListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return PlatformWidget(
+      androidBuilder: _buildAndroid,
+      iosBuilder: _buildIos,
+    );
+  }
+
+  Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'News App',
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-        backgroundColor: Colors.white,
-      ),
+      appBar: AppBar(title: Text('News App')),
       body: _buildList(context),
+    );
+  }
+
+  Widget _buildIos(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('News App'),
+      ),
+      child: _buildList(context),
     );
   }
 

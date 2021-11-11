@@ -25,6 +25,8 @@ class MyApp extends StatelessWidget {
         textTheme: myTextTheme.apply(bodyColor: Colors.black),
         appBarTheme: AppBarTheme(
           elevation: 0,
+          backgroundColor: primaryColor,
+          foregroundColor: Colors.black,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(

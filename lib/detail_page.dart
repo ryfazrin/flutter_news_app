@@ -13,13 +13,7 @@ class ArticleDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          article.title,
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-        backgroundColor: Colors.white,
+        title: Text(article.title),
       ),
       body: SingleChildScrollView(
         child: Column(
