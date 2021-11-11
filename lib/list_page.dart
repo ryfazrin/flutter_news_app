@@ -19,19 +19,22 @@ class NewsListPage extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
       ),
-      body: FutureBuilder<String>(
-        future:
-            DefaultAssetBundle.of(context).loadString('assets/articles.json'),
-        builder: (context, snapshot) {
-          final List<Article> articles = parseArticles(snapshot.data);
-          return ListView.builder(
-            itemCount: articles.length,
-            itemBuilder: (BuildContext context, int index) {
-              return _buildArticleItem(context, articles[index]);
-            },
-          );
-        },
-      ),
+      body: _buildList(context),
+    );
+  }
+
+  Widget _buildList(BuildContext context) {
+    return FutureBuilder<String>(
+      future: DefaultAssetBundle.of(context).loadString('assets/articles.json'),
+      builder: (context, snapshot) {
+        final List<Article> articles = parseArticles(snapshot.data);
+        return ListView.builder(
+          itemCount: articles.length,
+          itemBuilder: (BuildContext context, int index) {
+            return _buildArticleItem(context, articles[index]);
+          },
+        );
+      },
     );
   }
 
