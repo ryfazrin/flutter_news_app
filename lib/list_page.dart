@@ -4,11 +4,16 @@ import 'package:flutter_news_app/article.dart';
 import 'package:flutter_news_app/detail_page.dart';
 import 'package:flutter_news_app/widgets/platform_widget.dart';
 
-class NewsListPage extends StatelessWidget {
+class NewsListPage extends StatefulWidget {
   static const routeName = '/article_list';
 
   const NewsListPage({Key? key}) : super(key: key);
 
+  @override
+  State<NewsListPage> createState() => _NewsListPageState();
+}
+
+class _NewsListPageState extends State<NewsListPage> {
   @override
   Widget build(BuildContext context) {
     return PlatformWidget(
@@ -49,19 +54,21 @@ class NewsListPage extends StatelessWidget {
   }
 
   Widget _buildArticleItem(BuildContext context, Article article) {
-    return ListTile(
-      onTap: () {
-        Navigator.pushNamed(context, ArticleDetailPage.routeName,
-            arguments: article);
-      },
-      contentPadding:
-          const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      leading: Image.network(
-        article.urlToImage,
-        width: 100,
+    return Material(
+      child: ListTile(
+        onTap: () {
+          Navigator.pushNamed(context, ArticleDetailPage.routeName,
+              arguments: article);
+        },
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        leading: Image.network(
+          article.urlToImage,
+          width: 100,
+        ),
+        title: Text(article.title),
+        subtitle: Text(article.author),
       ),
-      title: Text(article.title),
-      subtitle: Text(article.author),
     );
   }
 }
