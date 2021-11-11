@@ -25,7 +25,6 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('News App')),
       body: bottomNavIndex == 0 ? ArticleListPage() : Placeholder(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomNavIndex,

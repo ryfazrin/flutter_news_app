@@ -1,12 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/article.dart';
 import 'package:flutter_news_app/detail_page.dart';
+import 'package:flutter_news_app/widgets/platform_widget.dart';
 
 class ArticleListPage extends StatelessWidget {
   const ArticleListPage({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildList(BuildContext context) {
     return FutureBuilder<String>(
       future: DefaultAssetBundle.of(context).loadString('assets/articles.json'),
       builder: (context, snapshot) {
@@ -37,6 +38,32 @@ class ArticleListPage extends StatelessWidget {
         title: Text(article.title),
         subtitle: Text(article.author),
       ),
+    );
+  }
+
+  Widget _buildAndroid(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('News App'),
+      ),
+      body: _buildList(context),
+    );
+  }
+
+  Widget _buildIos(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('News App'),
+      ),
+      child: _buildList(context),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PlatformWidget(
+      androidBuilder: _buildAndroid,
+      iosBuilder: _buildIos,
     );
   }
 }
