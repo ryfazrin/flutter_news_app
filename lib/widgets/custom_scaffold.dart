@@ -34,7 +34,7 @@ class CustomScaffold extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: 16.0),
             child: Text(
-              'N',
+              'R',
               style: Theme.of(context).textTheme.headline6,
             ),
           ),
