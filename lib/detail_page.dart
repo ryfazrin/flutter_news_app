@@ -13,7 +13,13 @@ class ArticleDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(article.title),
+        title: Text(
+          article.title,
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -46,7 +52,8 @@ class ArticleDetailPage extends StatelessWidget {
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, ArticleWebView.routeName, arguments: article.url);
+                      Navigator.pushNamed(context, ArticleWebView.routeName,
+                          arguments: article.url);
                     },
                     child: Text('Read More'),
                   ),
