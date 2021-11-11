@@ -4,7 +4,7 @@ import 'package:flutter_news_app/article_list_page.dart';
 import 'package:flutter_news_app/widgets/platform_widget.dart';
 
 class HomePage extends StatefulWidget {
-  static const routeName = '/article_list';
+  static const routeName = '/home_page';
 
   const HomePage({Key? key}) : super(key: key);
 
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('News App')),
-      body: ArticleListPage(),
+      body: bottomNavIndex == 0 ? ArticleListPage() : Placeholder(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomNavIndex,
         items: [
