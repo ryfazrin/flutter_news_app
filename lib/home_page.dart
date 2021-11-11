@@ -49,11 +49,29 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildIos(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: Text('News App'),
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.news),
+            label: 'Headline',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.settings),
+            label: 'Settings',
+          ),
+        ],
       ),
-      child: ArticleListPage(),
+      tabBuilder: (context, index) {
+        switch (index) {
+          case 0:
+            return ArticleListPage();
+          case 1:
+            return Placeholder();
+          default:
+            return Placeholder();
+        }
+      },
     );
   }
 }
