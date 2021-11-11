@@ -39,6 +39,10 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: secondaryColor,
+          unselectedItemColor: Colors.grey,
+        ),
       ),
       initialRoute: HomePage.routeName,
       routes: {
