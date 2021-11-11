@@ -6,6 +6,8 @@ import 'package:flutter_news_app/widgets/platform_widget.dart';
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
+  static const String settingsTitle = 'Settings';
+
   Widget _buildList(BuildContext context) {
     return ListView(
       children: [

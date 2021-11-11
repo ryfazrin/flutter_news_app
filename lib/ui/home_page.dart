@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/ui/article_list_page.dart';
@@ -14,7 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int bottomNavIndex = 0;
+  int _bottomNavIndex = 0;
+  static const String _headlineText = 'Headline';
 
   @override
   Widget build(BuildContext context) {
@@ -26,22 +29,13 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-      body: bottomNavIndex == 0 ? ArticleListPage() : SettingsPage(),
+      body: _listWidget[_bottomNavIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: bottomNavIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.public),
-            label: 'Headline',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
+        currentIndex: _bottomNavIndex,
+        items: _bottomNavBarItems,
         onTap: (selected) {
           setState(() {
-            bottomNavIndex = selected;
+            _bottomNavIndex = selected;
           });
         },
       ),
@@ -50,28 +44,28 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildIos(BuildContext context) {
     return CupertinoTabScaffold(
-      tabBar: CupertinoTabBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.news),
-            label: 'Headline',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.settings),
-            label: 'Settings',
-          ),
-        ],
-      ),
+      tabBar: CupertinoTabBar(items: _bottomNavBarItems),
       tabBuilder: (context, index) {
-        switch (index) {
-          case 0:
-            return ArticleListPage();
-          case 1:
-            return SettingsPage();
-          default:
-            return Placeholder();
-        }
+        return _listWidget[index];
       },
     );
   }
+
+  List<BottomNavigationBarItem> _bottomNavBarItems = [
+    BottomNavigationBarItem(
+      icon: Icon(Platform.isIOS ? CupertinoIcons.news : Icons.public),
+      // label: _headlineText,
+      label: _headlineText,
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
+      // label: SettingsPage.settingsTitle,
+      label: SettingsPage.settingsTitle,
+    ),
+  ];
+
+  List<Widget> _listWidget = [
+    ArticleListPage(),
+    SettingsPage(),
+  ];
 }
