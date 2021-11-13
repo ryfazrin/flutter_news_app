@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/data/model/article.dart';
-import 'package:flutter_news_app/ui/detail_page.dart';
+import 'package:flutter_news_app/ui/article_detail_page.dart';
 import 'package:flutter_news_app/widgets/platform_widget.dart';
 
 class ArticleListPage extends StatelessWidget {
