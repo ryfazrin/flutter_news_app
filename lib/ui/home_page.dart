@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  List<BottomNavigationBarItem> _bottomNavBarItems = [
+  final List<BottomNavigationBarItem> _bottomNavBarItems = [
     BottomNavigationBarItem(
       icon: Icon(Platform.isIOS ? CupertinoIcons.news : Icons.public),
       // label: _headlineText,
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
     ),
   ];
 
-  List<Widget> _listWidget = [
+  final List<Widget> _listWidget = [
     ArticleListPage(),
     SettingsPage(),
   ];
