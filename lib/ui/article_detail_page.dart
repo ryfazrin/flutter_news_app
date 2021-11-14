@@ -13,18 +13,24 @@ class ArticleDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(article.title),
+        title: Text("News App"),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(article.urlToImage),
+            Hero(
+              tag: Image.network(article.urlToImage!),
+              child: Image.network(article.urlToImage!),
+            ),
             Padding(
               padding: EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(article.description),
+                  Text(
+                    article.description!,
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
                   Divider(color: Colors.grey),
                   Text(
                     article.title,
@@ -40,7 +46,7 @@ class ArticleDetailPage extends StatelessWidget {
                   Text('Author: ${article.author}'),
                   Divider(color: Colors.grey),
                   Text(
-                    article.content,
+                    article.content ?? "",
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(height: 10),
