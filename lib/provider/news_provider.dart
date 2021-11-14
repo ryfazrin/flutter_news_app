@@ -7,7 +7,7 @@ enum ResultState { Loading, NoData, HasData, Error }
 class NewsProvider extends ChangeNotifier {
   final ApiService apiService;
 
-  NewsProvider(this.apiService) {
+  NewsProvider({required this.apiService}) {
     _fetchAllArticle();
   }
 
