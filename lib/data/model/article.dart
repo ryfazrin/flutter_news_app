@@ -34,13 +34,13 @@ class Article {
     required this.content,
   });
 
-  String author;
+  String? author;
   String title;
-  String description;
+  String? description;
   String url;
-  String urlToImage;
-  DateTime publishedAt;
-  String content;
+  String? urlToImage;
+  DateTime? publishedAt;
+  String? content;
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
         author: json["author"],
