@@ -1,49 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news_app/data/api/api_service.dart';
-import 'package:flutter_news_app/data/model/article.dart';
-import 'package:flutter_news_app/ui/article_detail_page.dart';
+import 'package:flutter_news_app/provider/news_provider.dart';
 import 'package:flutter_news_app/widgets/card_article.dart';
 import 'package:flutter_news_app/widgets/platform_widget.dart';
+import 'package:provider/provider.dart';
 
-class ArticleListPage extends StatefulWidget {
-  const ArticleListPage({Key? key}) : super(key: key);
-
-  @override
-  State<ArticleListPage> createState() => _ArticleListPageState();
-}
-
-class _ArticleListPageState extends State<ArticleListPage> {
-  late Future<ArticlesResult> _article;
-
-  @override
-  void initState() {
-    super.initState();
-    _article = ApiService().topHeadlines();
-  }
-
+class ArticleListPage extends StatelessWidget {
   Widget _buildList(BuildContext context) {
-    return FutureBuilder(
-      future: _article,
-      builder: (context, AsyncSnapshot<ArticlesResult> snapshot) {
-        var state = snapshot.connectionState;
-        if (state != ConnectionState.done) {
+    return Consumer<NewsProvider>(
+      builder: (context, state, _) {
+        if (state.state == ResultState.Loading) {
           return Center(child: CircularProgressIndicator());
+        } else if (state.state == ResultState.HasData) {
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: state.result.articles.length,
+            itemBuilder: (BuildContext context, int index) {
+              var article = state.result.articles[index];
+              return CardArticle(article: article);
+            },
+          );
+        } else if (state.state == ResultState.NoData) {
+          return Center(child: Text(state.message));
+        } else if (state.state == ResultState.Error) {
+          return Center(child: Text(state.message));
         } else {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: snapshot.data?.articles.length,
-              itemBuilder: (BuildContext context, int index) {
-                var article = snapshot.data?.articles[index];
-                return CardArticle(article: article!);
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Center(child: Text(snapshot.error.toString()));
-          } else {
-            return Text('');
-          }
+          return Center(child: Text(''));
         }
       },
     );
