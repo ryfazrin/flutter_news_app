@@ -1,6 +1,12 @@
 # flutter_news_app
 
-A new Flutter project.
+Codelab Flutter Fundamental a new Flutter project.
+
+## Api and Model tools
+
+api(login) : (newsapi.org)[http://newsapi.org/v2/top-headlines?country=id&category=business&apiKey=API_KEY]
+
+Model tools : (quicktype)[https://app.quicktype.io/]
 
 ## Getting Started
 
