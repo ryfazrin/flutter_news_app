@@ -19,6 +19,8 @@ class NewsProvider extends ChangeNotifier {
 
   ArticlesResult get result => _articlesResult;
 
+  ResultState get state => _state;
+
   Future<dynamic> _fetchAllArticle() async {
     try {
       _state = ResultState.Loading;
