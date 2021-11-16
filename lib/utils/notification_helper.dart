@@ -7,14 +7,14 @@ import 'package:rxdart/rxdart.dart';
 
 final selectNotificationSubject = BehaviorSubject<String>();
 
-class Notificationhelper {
-  static Notificationhelper? _instance;
+class NotificationHelper {
+  static NotificationHelper? _instance;
 
-  Notificationhelper._internal() {
+  NotificationHelper._internal() {
     _instance = this;
   }
 
-  factory Notificationhelper() => _instance ?? Notificationhelper._internal();
+  factory NotificationHelper() => _instance ?? NotificationHelper._internal();
 
   Future<void> initNotifications(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
