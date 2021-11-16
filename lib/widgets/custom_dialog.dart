@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/common/navigation.dart';
 
-CustomDialog(BuildContext context) {
+customDialog(BuildContext context) {
   if (Platform.isIOS) {
     showCupertinoDialog(
         context: context,
