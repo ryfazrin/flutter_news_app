@@ -2,6 +2,7 @@ import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:flutter_news_app/data/api/api_service.dart';
+import 'package:flutter_news_app/main.dart';
 import 'package:flutter_news_app/utils/notification_helper.dart';
 
 final ReceivePort port = ReceivePort();
@@ -32,6 +33,6 @@ class BackgroundService {
         flutterLocalNotificationsPlugin, result);
 
     _uiSendPort ??= IsolateNameServer.lookupPortByName(_isolateName);
-    _uiSendPort?.send();
+    _uiSendPort?.send(null);
   }
 }
