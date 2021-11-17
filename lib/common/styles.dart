@@ -51,3 +51,31 @@ class Pallete {
     },
   );
 }
+
+ThemeData lightTheme = ThemeData(
+  primaryColor: primaryColor,
+  colorScheme: ColorScheme.fromSwatch(primarySwatch: Pallete.kToDark)
+      .copyWith(secondary: secondaryColor),
+  scaffoldBackgroundColor: Colors.white,
+  textTheme: myTextTheme.apply(bodyColor: Colors.black),
+  appBarTheme: AppBarTheme(
+    elevation: 0,
+    backgroundColor: primaryColor,
+    foregroundColor: Colors.black,
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: secondaryColor,
+      textStyle: TextStyle(),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(0),
+        ),
+      ),
+    ),
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor: secondaryColor,
+    unselectedItemColor: Colors.grey,
+  ),
+);
