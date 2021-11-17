@@ -4,7 +4,10 @@ import 'package:flutter_news_app/preferences/preferences_helper.dart';
 class PreferencesProvider extends ChangeNotifier {
   PreferencesHelper preferencesHelper;
 
-  PreferencesProvider({required this.preferencesHelper});
+  PreferencesProvider({required this.preferencesHelper}) {
+    _getTheme();
+    _getDailyNewsPreferences();
+  }
 
   bool _isDarkTheme = false;
   bool get isDarkTheme => _isDarkTheme;
