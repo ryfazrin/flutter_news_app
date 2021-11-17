@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news_app/common/styles.dart';
 import 'package:flutter_news_app/preferences/preferences_helper.dart';
 
 class PreferencesProvider extends ChangeNotifier {
@@ -11,6 +12,8 @@ class PreferencesProvider extends ChangeNotifier {
 
   bool _isDarkTheme = false;
   bool get isDarkTheme => _isDarkTheme;
+
+  ThemeData get themeData => _isDarkTheme ? darkTheme : lightTheme;
 
   bool _isDailyNewsActive = false;
   bool get isDailyNewsactive => _isDailyNewsActive;
