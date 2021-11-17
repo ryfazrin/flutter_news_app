@@ -57,6 +57,7 @@ ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.fromSwatch(primarySwatch: Pallete.kToDark)
       .copyWith(secondary: secondaryColor),
   scaffoldBackgroundColor: Colors.white,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
   textTheme: myTextTheme.apply(bodyColor: Colors.black),
   appBarTheme: AppBarTheme(
     elevation: 0,
@@ -76,6 +77,38 @@ ThemeData lightTheme = ThemeData(
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: secondaryColor,
+    unselectedItemColor: Colors.grey,
+  ),
+);
+
+final Color darkPrimaryColor = Color(0xFF000000);
+final Color darkSecondaryColor = Color(0xff64ffda);
+
+ThemeData darkTheme = ThemeData.dark().copyWith(
+  primaryColor: darkPrimaryColor,
+  colorScheme: ColorScheme.fromSwatch(primarySwatch: Pallete.kToDark)
+      .copyWith(secondary: darkSecondaryColor),
+  scaffoldBackgroundColor: Colors.black,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+  textTheme: myTextTheme.apply(bodyColor: Colors.white),
+  appBarTheme: AppBarTheme(
+    elevation: 0,
+    backgroundColor: darkPrimaryColor,
+    foregroundColor: Colors.white,
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: darkSecondaryColor,
+      textStyle: TextStyle(),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(0),
+        ),
+      ),
+    ),
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor: darkSecondaryColor,
     unselectedItemColor: Colors.grey,
   ),
 );
