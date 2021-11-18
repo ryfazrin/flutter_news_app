@@ -1,3 +1,4 @@
+import 'package:flutter_news_app/data/model/article.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
@@ -35,10 +36,46 @@ class DatabaseHelper {
   }
 
   Future<Database?> get database async {
-    if (_database == null) {
-      _database = await _initializeDb();
-    }
+    _database ??= await _initializeDb();
 
     return _database;
+  }
+
+  Future<void> insertBookmark(Article article) async {
+    final db = await database;
+    await db!.insert(_tblBookmark, article.toJson());
+  }
+
+  Future<List<Article>> getBookmarks() async {
+    final db = await database;
+    List<Map<String, dynamic>> results = await db!.query(_tblBookmark);
+
+    return results.map((res) => Article.fromJson(res)).toList();
+  }
+
+  Future<Map> getBookmarkByUrl(String url) async {
+    final db = await database;
+
+    List<Map<String, dynamic>> results = await db!.query(
+      _tblBookmark,
+      where: 'url = ?',
+      whereArgs: [url],
+    );
+
+    if (results.isNotEmpty) {
+      return results.first;
+    } else {
+      return {};
+    }
+  }
+
+  Future<void> removeBookmark(String url) async {
+    final db = await database;
+
+    await db!.delete(
+      _tblBookmark,
+      where: 'url = ?',
+      whereArgs: [url],
+    );
   }
 }
