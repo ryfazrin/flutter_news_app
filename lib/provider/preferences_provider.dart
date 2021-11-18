@@ -16,7 +16,7 @@ class PreferencesProvider extends ChangeNotifier {
   ThemeData get themeData => _isDarkTheme ? darkTheme : lightTheme;
 
   bool _isDailyNewsActive = false;
-  bool get isDailyNewsactive => _isDailyNewsActive;
+  bool get isDailyNewsActive => _isDailyNewsActive;
 
   void _getTheme() async {
     _isDarkTheme = await preferencesHelper.isDarkTheme;
