@@ -29,4 +29,31 @@ class DatabaseProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void addBookmark(Article article) async {
+    try {
+      await databaseHelper.insertBookmark(article);
+      _getBookmarks();
+    } catch (e) {
+      _state = ResultState.Error;
+      _message = 'Error: $e';
+      notifyListeners();
+    }
+  }
+
+  Future<bool> isBookmarked(String url) async {
+    final bookmarkedArticle = await databaseHelper.getBookmarkByUrl(url);
+    return bookmarkedArticle.isNotEmpty;
+  }
+
+  void removeBookmark(String url) async {
+    try {
+      await databaseHelper.removeBookmark(url);
+      _getBookmarks();
+    } catch (e) {
+      _state = ResultState.Error;
+      _message = 'Error: $e';
+      notifyListeners();
+    }
+  }
 }
