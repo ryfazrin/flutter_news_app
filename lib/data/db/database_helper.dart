@@ -25,7 +25,7 @@ class DatabaseHelper {
           description TEXT,
           urlToImage TEXT,
           publishedAt TEXT,
-          content TEXT,
+          content TEXT
         )
         ''');
       },
