@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/data/db/database_helper.dart';
 import 'package:flutter_news_app/data/model/article.dart';
-import 'package:flutter_news_app/provider/news_provider.dart';
+import 'package:flutter_news_app/utils/result_state.dart';
 
 class DatabaseProvider extends ChangeNotifier {
   final DatabaseHelper databaseHelper;
@@ -21,7 +21,8 @@ class DatabaseProvider extends ChangeNotifier {
 
   void _getBookmarks() async {
     _bookmarks = await databaseHelper.getBookmarks();
-    if (_bookmarks.length > 0) {
+    print(bookmarks[0].title);
+    if (_bookmarks.isNotEmpty) {
       _state = ResultState.HasData;
     } else {
       _state = ResultState.NoData;
@@ -50,6 +51,8 @@ class DatabaseProvider extends ChangeNotifier {
     try {
       await databaseHelper.removeBookmark(url);
       _getBookmarks();
+      _state = ResultState.HasData;
+      notifyListeners();
     } catch (e) {
       _state = ResultState.Error;
       _message = 'Error: $e';
