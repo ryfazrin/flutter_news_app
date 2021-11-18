@@ -30,6 +30,17 @@ class CardArticle extends StatelessWidget {
                 ),
                 title: Text(article.title),
                 subtitle: Text(article.author!),
+                trailing: isBookmarked
+                    ? IconButton(
+                        icon: Icon(Icons.bookmark),
+                        color: Theme.of(context).accentColor,
+                        onPressed: () => provider.removeBookmark(article.url),
+                      )
+                    : IconButton(
+                        icon: Icon(Icons.bookmark_border),
+                        color: Theme.of(context).accentColor,
+                        onPressed: () => provider.addBookmark(article),
+                      ),
                 onTap: () => Navigation.intentWithData(
                     ArticleDetailPage.routeName, article),
               ),
