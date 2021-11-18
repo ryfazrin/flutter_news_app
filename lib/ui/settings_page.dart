@@ -25,7 +25,7 @@ class SettingsPage extends StatelessWidget {
                 trailing: Switch.adaptive(
                   value: provider.isDarkTheme,
                   onChanged: (value) {
-                    provider.enableDailyNews(value);
+                    provider.enableDarkTheme(value);
                   },
                 ),
               ),

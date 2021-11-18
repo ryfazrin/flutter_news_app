@@ -99,7 +99,9 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       primary: darkSecondaryColor,
-      textStyle: TextStyle(),
+      textStyle: TextStyle(
+        color: Colors.black,
+      ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(0),

@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _listWidget = [
     ArticleListPage(),
-    BookmarksPage(),
+    // BookmarksPage(),
     SettingsPage(),
   ];
 
