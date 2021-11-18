@@ -1,16 +1,18 @@
 import 'dart:io';
 
 import 'package:android_alarm_manager/android_alarm_manager.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_news_app/common/navigation.dart';
-import 'package:flutter_news_app/common/styles.dart';
 import 'package:flutter_news_app/data/model/article.dart';
+import 'package:flutter_news_app/provider/preferences_provider.dart';
 import 'package:flutter_news_app/ui/article_detail_page.dart';
 import 'package:flutter_news_app/ui/article_web_view.dart';
 import 'package:flutter_news_app/ui/home_page.dart';
 import 'package:flutter_news_app/utils/background_service.dart';
 import 'package:flutter_news_app/utils/notification_helper.dart';
+import 'package:provider/provider.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -37,45 +39,35 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'News App',
-      theme: ThemeData(
-        primarySwatch: Pallete.kToDark,
-        primaryColor: primaryColor,
-        accentColor: secondaryColor,
-        scaffoldBackgroundColor: Colors.white,
-        textTheme: myTextTheme.apply(bodyColor: Colors.black),
-        appBarTheme: AppBarTheme(
-          elevation: 0,
-          backgroundColor: primaryColor,
-          foregroundColor: Colors.black,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            primary: secondaryColor,
-            textStyle: TextStyle(),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(0),
+    return Consumer<PreferencesProvider>(
+      builder: (context, provider, child) {
+        return MaterialApp(
+          title: 'News App',
+          theme: provider.themeData,
+          builder: (context, child) {
+            return CupertinoTheme(
+              data: CupertinoThemeData(
+                brightness:
+                    provider.isDarkTheme ? Brightness.dark : Brightness.light,
               ),
-            ),
-          ),
-        ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedItemColor: secondaryColor,
-          unselectedItemColor: Colors.grey,
-        ),
-      ),
-      navigatorKey: navigatorKey,
-      initialRoute: HomePage.routeName,
-      routes: {
-        HomePage.routeName: (context) => HomePage(),
-        ArticleDetailPage.routeName: (context) => ArticleDetailPage(
-              article: ModalRoute.of(context)?.settings.arguments as Article,
-            ),
-        ArticleWebView.routeName: (context) => ArticleWebView(
-              url: ModalRoute.of(context)?.settings.arguments as String,
-            ),
+              child: Material(
+                child: child,
+              ),
+            );
+          },
+          navigatorKey: navigatorKey,
+          initialRoute: HomePage.routeName,
+          routes: {
+            HomePage.routeName: (context) => HomePage(),
+            ArticleDetailPage.routeName: (context) => ArticleDetailPage(
+                  article:
+                      ModalRoute.of(context)?.settings.arguments as Article,
+                ),
+            ArticleWebView.routeName: (context) => ArticleWebView(
+                  url: ModalRoute.of(context)?.settings.arguments as String,
+                ),
+          },
+        );
       },
     );
   }
